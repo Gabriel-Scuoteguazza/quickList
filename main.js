@@ -16,7 +16,7 @@ function addItem() {
 }
 
 function showItemsList() {
-    const sectionList = document.querySelector(".List")
+    const sectionList = document.querySelector(".list")
 
     sectionList.innerHTML = ""
 
@@ -40,7 +40,7 @@ function showItemsList() {
 }
 
 function checkItem(itemName) {
-    const item = ite.find((item) => item.name === itemName)
+    const item = item.find((item) => item.name === itemName)
     item.checked = !item.checked
     showItemsList()
 }
