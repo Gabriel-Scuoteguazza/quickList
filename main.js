@@ -22,11 +22,11 @@ function showItemsList() {
 
     items.sort((itemA, itemB) => Number(itemA.checked) - Number(itemB.checked))
 
-    item.map((item, index) => {
+    items.map((item, index) => {
         sectionList.innerHTML += `
         <div class="item">
         <div>
-            <input type="checkbox" name="list" id="item-${index}">
+            <input type="checkbox" name="list" id="item-${index}" onclick="checkItem('${item.name}')"${item.checked === true ? "checked" : ""}>
             <div class="custom-checkbox">
                 <img src="./assets/checked.svg" alt="checked">
             </div>
