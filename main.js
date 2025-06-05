@@ -1,4 +1,4 @@
-const items = []
+let items = []
 
 function addItem() {
     const itemName = document.querySelector("#item").value
@@ -29,23 +29,28 @@ function showItemsList() {
 
     items.map((item, index) => {
         sectionList.innerHTML += `
-        <div class="item">
-        <div>
-            <input type="checkbox" name="list" id="item-${index}" onclick="checkItem('${item.name}')"${item.checked === true ? "checked" : ""}>
-            <div class="custom-checkbox">
-                <img src="./assets/checked.svg" alt="checked">
-            </div>
-            <label for="item-${index}">${item.name}</label>
-        </div>
-        <button onclick="removeItem('${item.name}')">
-            <img src="./assets/trash-icon.svg" alt="trash icon">
-        </button>
-    `
+                <div class="item">
+                    <div>
+                        <input type="checkbox" name="list" id="item-${index}" ${item.checked === true ? "checked" : ""}>
+                        <div class="custom-checkbox" onclick="checkItem('${item.name}')">
+                            <img src="./assets/checked.svg" alt="checked">
+                        </div>
+                        <label for="item-${index}" onclick="checkItem('${item.name}')">${item.name}</label>
+                    </div>
+                    <button onclick="removeItem('${item.name}')">
+                        <img src="./assets/trash-icon.svg" alt="trash icon">
+                    </button>
+                </div>
+        `
     })
+
+    localStorage.setItem("items", JSON.stringify(items))
 }
 
+
+
 function checkItem(itemName) {
-    const item = item.find((item) => item.name === itemName)
+    const item = items.find((item) => item.name === itemName)
     item.checked = !item.checked
     showItemsList()
 }
@@ -60,10 +65,24 @@ function removeItem(itemName) {
         divWarning.classList.add("hide-warning")
     }, 4000)
 
-    if(itemIndex !== -1) {
+    if (itemIndex !== -1) {
         items.splice(itemIndex, 1)
     }
 
     showItemsList()
 }
 
+function addHideWarningClass() {
+    document.querySelector(".warning").classList.add("hide-warning")
+}
+
+function verifyLocalStorageItems() {
+    const localStorageItems = localStorage.getItem("items")
+
+    if (localStorageItems) {
+        items = JSON.parse(localStorageItems)
+        showItemsList()
+    }
+}
+
+verifyLocalStorageItems()

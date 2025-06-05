@@ -30,7 +30,9 @@ body {
 header {
     margin-bottom: 4.4rem;
     max-width: 62.7rem;
+    /* Largura Máxima */
     margin-inline: auto;
+    /* Ficar sempre no centro da horizontal*/
     display: flex;
     flex-direction: column;
     align-items: start;
@@ -59,6 +61,7 @@ header {
     }
 }
 
+
 main {
     max-width: 62.7rem;
     margin-inline: auto;
@@ -75,7 +78,6 @@ main {
         margin-bottom: 1.6rem;
         outline: none;
         color: var(--content-primary);
-
 
         &::placeholder {
             color: var(--content-tertiary);
@@ -198,26 +200,27 @@ main {
         border: none;
         background: none;
         color: var(--always-white);
+        cursor: pointer;
     }
-
 }
 
 .hide-warning {
     opacity: 0;
-    transform: translateY(-1);
+    transform: translateY(-10px);
 }
 
-@media(min-width: 627px) {
+@media (min-width: 627px) {
     header {
         img {
-            margin-bottom: 6.4ren;
+            margin-bottom: 6.4rem;
         }
     }
-    
+
+
     .add-item {
         display: grid;
         grid-template-columns: repeat(10, 1fr);
-        gap: 1.6rem; 
+        gap: 1.6rem;
 
         input {
             margin-bottom: 0;
